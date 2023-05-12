@@ -1,0 +1,129 @@
+@font-face {
+  font-family: PokemonGBFont;
+  src: url(../fonts/PokemonGb-RAeo.ttf);
+}
+
+@font-face {
+  font-family: PokemonUknGBFont;
+  src: url(../fonts/PokemonUnownGb-YAWa.ttf);
+}
+
+/* Animation */
+
+@keyframes typing {
+  from {
+    width: 0;
+    visibility: "visible";
+  }
+
+  to {
+    width: calc(var(--typing-steps) * 1em);
+    visibility: "visible";
+  }
+}
+
+@keyframes blinking {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* html, body {
+  height: 60vh;
+  margin-top: 40vh;
+} */
+
+.hidden {
+  visibility: hidden;
+}
+
+.animation-blink {
+  animation: blinking 1s ease-in-out infinite alternate;
+}
+
+.animation-typing {
+  animation: typing calc(var(--typing-steps)* 0.03s) steps(var(--typing-steps), end) forwards;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.box-dialogue {
+  position: relative;
+  font-size: 12px;
+  font-family: 'PokemonGBFont';
+  border-radius: 2px;
+  padding: 8px;
+  width: 90%;
+  height: 50px;
+  line-height: 16px;
+  /* padding-bottom: 18px; */
+  padding-right: 18px;
+  margin: auto;
+  background: white;
+  border: 1px solid white;
+  box-shadow: 0 1px 0 1px black,
+    inset 0 1px 0 1px black,
+    0 0 0 1px black,
+    inset 0 0 0 1px black;
+}
+
+.box-dialogue i {
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-top-color: black;
+  float: right;
+  bottom: 5px;
+  right: 10px;
+  position: absolute;
+}
+
+.box-dialogue span {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+}
+
+.box-action {
+  clear: both;
+  font-size: 12px;
+  font-family: 'PokemonGBFont';
+  border-radius: 2px;
+  padding: 8px;
+  width: 4em;
+  line-height: 20px;
+  padding-left: 12px;
+  background: white;
+  border: 1px solid white;
+  box-shadow: 0 1px 0 1px black,
+    inset 0 1px 0 1px black,
+    0 0 0 1px black,
+    inset 0 0 0 1px black;
+  float: right;
+  margin: auto;
+  margin-right: 4%;
+  margin-bottom: 2px;
+}
+
+.box-action i {
+  width: 0;
+  height: 0;
+  margin-top: 4px;
+  border: 5px solid transparent;
+  border-left-color: black;
+  animation: blinking 1s ease-in-out infinite alternate;
+  float: left;
+}
+
+.box-action span {
+  padding: 1px;
+  /* margin: 10px 0; */
+}

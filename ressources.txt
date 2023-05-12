@@ -1,0 +1,7 @@
+FONT :
+https://www.dafont.com/pkmn-rbygsc.font
+
+DIALOGUE BOX :
+https://codepen.io/DaveRGP/pen/NbwMQb
+
+

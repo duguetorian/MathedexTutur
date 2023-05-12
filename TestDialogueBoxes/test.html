@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <title>TEST HTML PKM</title>
+  <link rel="stylesheet" href="test.css">
+</head>
+
+<body>
+  <div class="footer">
+    <div class="box-action" id="action" style="visibility: hidden;">
+      <span><i id="oui"></i>oui</span><br>
+      <span><i id="non"></i>non</span>
+    </div>
+    <div class="box-dialogue" id="introDialogue">
+      <span id="1-1" class="animation-typing" style="--typing-steps: 10">Salut BG !</span><br />
+      <span id="1-2" class="hidden" style="--typing-steps: 60">T'es prêt à avoir ton propre
+        pokédex avec tes maths dedans ?</span><br />
+      <i class="animation-blink" id="blinker"></i>
+    </div>
+    <div class="box-dialogue" id="poui" style="visibility: collapse;">
+      <span id="poui-d" style="--typing-steps: 27">Parfait c'est parti alors
+        !</span><br />
+      <i class="animation-blink" id="blinker"></i>
+    </div>
+    <div class="box-dialogue" id="pnon" style="visibility: collapse;">
+      <span id="pnon-d" style="--typing-steps: 42">Tant pis pour toi c'est parti quand
+        même !</span><br />
+      <i class="animation-blink" id="blinker"></i>
+    </div>
+  </div>
+  <!-- Appear when selected -->
+  <!-- <object
+    data="https://perso.ens-lyon.fr/arthur.ledieu/Developpements/01-Zeta%20et%20nombres%20premiers/build/Zeta%20et%20nombres%20premiers.pdf"
+    type="application/pdf" width="100%" height="500px">
+  </object> -->
+  <script>
+    // Animations Handling
+    let step = 0;
+    document.addEventListener("animationend", (event) => {
+      step += 1;
+      console.log("STEP: ", step, 'ID: ', event.target.id);
+      if (event.target.id === "1-1") {
+        document.getElementById("1-2").className = "animation-typing";
+        // document.getElementById("1-2").style.visibility = "visible";
+      }
+      if (event.target.id === "1-2") {
+        document.getElementById("blinker").className = "";
+        document.getElementById("action").style.visibility = "visible";
+      }
+    })
+
+    // Box Action Handling
+    let oui = document.getElementById('oui');
+    let non = document.getElementById('non');
+    let answerSelected = "oui";
+    non.style.visibility = "hidden";
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    function handleKeyDown(event) {
+      event.preventDefault()
+      // if (step === 0) {
+      //   document.getElementById("1-1").className = "animation-typing";
+      //   document.getElementById("1-1").style.visibility = "visible";
+      //   return;
+      // }
+
+      if (event.key === "ArrowUp") {
+        oui.style.visibility = "visible";
+        non.style.visibility = "hidden";
+        answerSelected = "oui";
+        return;
+      }
+      if (event.key === "ArrowDown") {
+        oui.style.visibility = "hidden";
+        non.style.visibility = "visible";
+        answerSelected = "non";
+      }
+      if (event.key === "Enter") {
+        oui.style.visibility = "hidden";
+        non.style.visibility = "hidden";
+        document.getElementById("introDialogue").style.visibility = "collapse";
+        document.getElementById("action").style.visibility = "hidden";
+        let nextDialogueBox;
+        let nextDialogue;
+        if (answerSelected === "oui") {
+          nextDialogueBox = document.getElementById("poui");
+          nextDialogue = document.getElementById("poui-d");
+        }
+        else {
+          nextDialogueBox = document.getElementById("pnon");
+          nextDialogue = document.getElementById("pnon-d");
+        }
+        nextDialogueBox.className = "box-dialogue";
+        nextDialogueBox.style.visibility = "visible";
+        nextDialogue.className = "animation-typing";
+        document.removeEventListener('keydown', handleKeyDown);
+        return;
+      }
+    }
+  </script>
+</body>
+
+</html>
